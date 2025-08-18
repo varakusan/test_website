@@ -1,4 +1,4 @@
-# ChatGPT 5 Website Starter (Vite + React)
+#  ChatGPT 5 Website Starter (Vite + React)
 
 Minimal starter you can run locally, push to GitHub, and auto‑deploy to Hostinger.
 It also creates pull‑request **live previews** using GitHub Pages.
