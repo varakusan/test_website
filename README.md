@@ -15,6 +15,11 @@ npm run dev
 # open http://localhost:5173
 ```
 
+## Test
+```bash
+npm test
+```
+
 ## Build
 ```bash
 npm run build
