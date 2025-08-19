@@ -1,35 +1,39 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function App() {
-  const [count, setCount] = useState(0)
   return (
     <div className="container">
       <header>
-        <h1>🚀 ChatGPT 5 Website Starter</h1>
-        <p>A minimal React + Vite project ready for GitHub + Hostinger CI/CD.</p>
+        <h1>Shift Control</h1>
+        <p>Advanced cold storage logistics powered by smart transportation.</p>
+        <img
+          className="hero"
+          src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1350&q=80"
+          alt="Refrigerated truck on the highway"
+        />
       </header>
 
       <main>
-        <button onClick={() => setCount(c => c + 1)}>Clicked {count} times</button>
         <section className="features">
           <div>
-            <h3>Fast Dev</h3>
-            <p>Run <code>npm run dev</code> and start building.</p>
+            <h3>❄️ Precision Cooling</h3>
+            <p>Real-time temperature tracking across our entire fleet.</p>
           </div>
           <div>
-            <h3>CI/CD</h3>
-            <p>Auto-deploy to Hostinger on push to <code>main</code>.</p>
+            <h3>🚚 Optimized Routing</h3>
+            <p>AI-powered logistics keep deliveries efficient and on schedule.</p>
           </div>
           <div>
-            <h3>PR Previews</h3>
-            <p>Each pull request posts a live preview via GitHub Pages.</p>
+            <h3>🔐 Secure Storage</h3>
+            <p>State-of-the-art facilities safeguard your goods.</p>
           </div>
         </section>
       </main>
 
       <footer>
-        <small>Made with Vite + React • Edit <code>src/App.jsx</code> to customize</small>
+        <small>© {new Date().getFullYear()} Shift Control Logistics</small>
       </footer>
     </div>
   )
 }
+
