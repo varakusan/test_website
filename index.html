@@ -1,371 +1,283 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Shift Control | Cold Chain Transportation & Storage Across India</title>
-    <meta name="description" content="Shift Control delivers temperature‑controlled transportation, cold storage, and real‑time monitoring for pharmaceuticals, food & beverages, and healthcare across India." />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Test Website — 3D Truck Demo</title>
+  <style>
+    :root{
+      --bg:#0f1720;
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#22c1c3;
+      --glass: rgba(255,255,255,0.03);
+    }
 
-    <!-- Brand palette (from logo): cyan/blue + green accent -->
-    <!-- TailwindCSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                cyan: '#13b1ec', // logo cyan
-                blue: '#3d5afe', // logo blue
-                green: '#12b24a', // logo checkmark green
-                dark: '#0b1b2b'
-              }
-            }
-          }
-        }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,#071026 0%, #0f1720 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      align-items:center;
+    }
+
+    header.site-header{
+      width:100%;
+      max-width:1100px;
+      padding:24px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:baseline;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .brand .title{
+      font-weight:700;
+      font-size:1.05rem;
+      letter-spacing:0.4px;
+    }
+    .brand .tag{
+      font-size:0.78rem;
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    main.container{
+      width:100%;
+      max-width:1100px;
+      padding:20px;
+      flex:1 0 auto;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .content{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border-radius:14px;
+      padding:20px;
+      box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    /* 3D tile list */
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:18px;
+      margin-top:12px;
+    }
+
+    .tile{
+      background:var(--glass);
+      border-radius:12px;
+      padding:18px;
+      transform-style:preserve-3d;
+      transition:transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+      cursor:pointer;
+      perspective:900px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .tile-inner{
+      width:100%;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      transform-origin:center;
+      transition:transform 280ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    .tile:hover{
+      transform:translateY(-8px);
+      box-shadow: 0 18px 36px rgba(2,6,23,0.65);
+    }
+
+    .tile:hover .tile-inner{
+      transform: rotateY(-10deg) translateZ(6px);
+    }
+
+    .tile .meta{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .tile .meta .label{
+      font-weight:600;
+      color:#e6eef6;
+    }
+    .tile .meta .desc{
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    /* Floating truck panel */
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      position:relative;
+      overflow:visible;
+      height:360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .floating-ship{
+      width:220px;
+      height:140px;
+      position:relative;
+      transform-style:preserve-3d;
+      transition:transform 420ms cubic-bezier(.2,.9,.2,1);
+      will-change:transform;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .floating-ship img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:10px;
+      box-shadow: 0 14px 36px rgba(2,6,23,0.65);
+      transform-origin:center;
+      backface-visibility:hidden;
+      will-change:transform,filter;
+    }
+
+    /* subtle floating animation */
+    @keyframes floaty {
+      0%{ transform: translateY(0px) rotateZ(0deg); }
+      50%{ transform: translateY(-8px) rotateZ(0.3deg); }
+      100%{ transform: translateY(0px) rotateZ(0deg); }
+    }
+    .floating-ship{ animation: floaty 4.8s ease-in-out infinite; }
+
+    /* 3D tilt on pointer move */
+    .panel:hover .floating-ship{
+      transform: translateZ(14px) rotateX(6deg) rotateY(-8deg) scale(1.02);
+      animation-play-state:paused;
+    }
+
+    footer.site-footer{
+      width:100%;
+      max-width:1100px;
+      padding:18px 20px;
+      color:var(--muted);
+      font-size:0.9rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    @media (max-width:880px){
+      main.container{
+        grid-template-columns: 1fr;
       }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; perspective: 1000px; }
-      .container-narrow { max-width: 1100px; }
-      .glass { backdrop-filter: blur(6px); background: rgba(255,255,255,0.6); }
-      .tile { transition: transform 0.3s ease, box-shadow 0.3s ease; transform-style: preserve-3d; }
-      .tile:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f1f1; }
-      ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #555; }
-      #floating-truck { position: fixed; top: 50%; left: 50%; width: 150px; transform-style: preserve-3d; animation: truckFloat 20s linear infinite; pointer-events: none; z-index: 50; }
-      @keyframes truckFloat {
-        0% { transform: translate3d(-50vw, -50vh, 0) rotateY(0deg); }
-        25% { transform: translate3d(50vw, -60vh, 50px) rotateY(90deg); }
-        50% { transform: translate3d(50vw, 40vh, 0) rotateY(180deg); }
-        75% { transform: translate3d(-50vw, 60vh, -50px) rotateY(270deg); }
-        100% { transform: translate3d(-50vw, -50vh, 0) rotateY(360deg); }
-      }
-    </style>
-  </head>
-  <body class="bg-slate-50 text-slate-800">
-    <img id="floating-truck" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80" alt="Floating Refrigerated Truck" />
-    <!-- Top Bar -->
-    <div class="w-full bg-brand.dark text-slate-100">
-      <div class="mx-auto container-narrow px-4 py-2 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div class="flex items-center gap-4">
-          <a href="tel:+919008922655" class="hover:underline">Call: +91 90089 22655</a>
-          <a href="mailto:sales@shiftcontroll.com" class="hover:underline">sales@shiftcontroll.com</a>
-        </div>
-        <div class="flex items-center gap-3">
-          <a href="https://wa.me/919008922655" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand.green hover:opacity-90 transition text-white" aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2a10 10 0 0 0-8.66 15.01L2 22l5.12-1.31A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.08-1.11l-.29-.17-3.03.78.81-2.95-.18-.3A8 8 0 1 1 20 12a8 8 0 0 1-8 8Zm4.61-5.7c-.25-.13-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.96-.15.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.25-.74-.66-1.25-1.47-1.4-1.72-.15-.26-.02-.4.11-.53.12-.12.25-.29.38-.44.13-.15.17-.25.25-.42.08-.16.05-.31-.03-.44-.08-.13-.56-1.34-.77-1.85-.2-.5-.41-.43-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02s.87 2.34 1 2.5c.12.16 1.71 2.6 4.15 3.65.58.25 1.03.4 1.38.52.58.18 1.1.15 1.52.09.46-.07 1.46-.6 1.67-1.17.21-.57.21-1.06.15-1.16-.06-.11-.23-.17-.48-.3Z"/></svg>
-            WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
+      .tiles{ grid-template-columns: repeat(1,1fr) }
+      .panel{ height:300px }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <a class="brand" href="/" aria-label="Test Website home">
+      <div class="title">Test Website</div>
+      <div class="tag">3D truck demo</div>
+    </a>
+    <nav aria-label="Main">
+      <a href="#" style="color:var(--muted); text-decoration:none; font-weight:600;">Docs</a>
+    </nav>
+  </header>
 
-    <!-- Header / Nav -->
-    <header class="sticky top-0 z-40 bg-white/90 glass shadow-sm">
-      <div class="mx-auto container-narrow px-4 py-4 flex items-center justify-between">
-        <a href="#home" class="flex items-center gap-3" aria-label="Shift Control Home">
-          <!-- Text-based logo branding keeps markup lightweight -->
-          <span class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></span>
-        </a>
-        <nav class="hidden md:flex items-center gap-6 font-medium">
-          <a href="#home" class="hover:text-brand.dark">Home</a>
-          <a href="#services" class="hover:text-brand.dark">Services</a>
-          <a href="#industries" class="hover:text-brand.dark">Industries</a>
-          <a href="#technology" class="hover:text-brand.dark">Technology</a>
-          <a href="#fleet" class="hover:text-brand.dark">Fleet</a>
-          <a href="#contact" class="px-4 py-2 rounded-xl bg-brand.blue text-white hover:opacity-90">Contact</a>
-        </nav>
-      </div>
-    </header>
+  <main class="container" role="main">
+    <section class="content" aria-labelledby="intro">
+      <h1 id="intro" style="margin:0 0 8px 0; color:#e6eef6;">Modern tiles & CDN truck</h1>
+      <p>
+        This page demonstrates lightweight text branding (no bundled SVGs), a truck image loaded from a CDN (Unsplash), and modern 3D tile + floating animations.
+      </p>
 
-    <!-- Hero -->
-    <section id="home" class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-brand.cyan via-brand.blue/20 to-white"></div>
-      <div class="relative mx-auto container-narrow px-4 py-20 lg:py-28 grid lg:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 class="text-4xl lg:text-5xl font-extrabold leading-tight">
-            Redefining <span class="text-brand.cyan">Cold Chain Logistics</span> Across India
-          </h1>
-          <p class="mt-5 text-lg text-slate-700 max-w-xl">Founded in 2022 and headquartered in Bangalore, Shift Control delivers world‑class, temperature‑controlled transportation, secure cold storage, and real‑time visibility for pharmaceuticals, food & beverages, healthcare, agriculture, and more.</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" class="px-5 py-3 rounded-xl bg-brand.blue text-white font-semibold hover:opacity-90">Talk to Sales</a>
-            <a href="#services" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-slate-400 font-semibold">Explore Services</a>
-          </div>
-          <div class="mt-6 text-sm text-slate-600">24×7 Operations • GDP/ISO‑aligned Practices • End‑to‑End Traceability</div>
-        </div>
-        <div class="relative">
-          <div class="rounded-3xl shadow-2xl bg-white p-6 border border-slate-100">
-            <div class="grid grid-cols-2 gap-6">
-              <div class="p-4 rounded-2xl bg-slate-50 tile">
-                <div class="text-3xl font-extrabold">-25°C</div>
-                <div class="text-sm text-slate-500">Deep‑freeze lanes</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50 tile">
-                <div class="text-3xl font-extrabold">+2–8°C</div>
-                <div class="text-sm text-slate-500">Chilled pharma</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50 tile">
-                <div class="text-3xl font-extrabold">+15–25°C</div>
-                <div class="text-sm text-slate-500">Ambient controlled</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50 tile">
-                <div class="text-3xl font-extrabold text-brand.green">99.5%</div>
-                <div class="text-sm text-slate-500">OTIF performance*</div>
-              </div>
-            </div>
-            <p class="mt-3 text-xs text-slate-400">*Illustrative KPI placeholder. Replace with your live metric.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Services</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">End‑to‑end solutions designed for integrity, speed, and compliance across your cold chain.</p>
-        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Temperature‑Controlled Transportation</h3>
-            <p class="mt-2 text-sm text-slate-600">Refrigerated fleet and validated containers maintain optimal temperatures from first mile to last.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Deep‑freeze, chilled, and ambient‑controlled</li>
-              <li>Route optimization & live GPS</li>
-              <li>OTIF and exception management</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Cold Storage Facilities</h3>
-            <p class="mt-2 text-sm text-slate-600">State‑of‑the‑art warehouses with advanced cooling, racking, and safety systems.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Multi‑temperature zones</li>
-              <li>Inventory & batch/lot tracking</li>
-              <li>Secure, audit‑ready operations</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Real‑Time Monitoring</h3>
-            <p class="mt-2 text-sm text-slate-600">IoT sensors and telemetry ensure precision, visibility, and proactive alerts in transit and storage.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Continuous temperature logging</li>
-              <li>Geo‑fencing & ETA updates</li>
-              <li>Digital POD & analytics</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Customized Logistics</h3>
-            <p class="mt-2 text-sm text-slate-600">Tailored solutions including specialized packaging, compliance documentation, and distribution.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Last‑mile & reverse logistics</li>
-              <li>Value‑added services (VAS)</li>
-              <li>SLA‑aligned playbooks</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Industries -->
-    <section id="industries" class="py-16 lg:py-20 bg-white">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Industries We Serve</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">Trusted by producers, distributors, retailers, and manufacturers across regulated and sensitive supply chains.</p>
-        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="p-6 rounded-2xl bg-slate-50 tile">
-            <h3 class="font-bold">Pharmaceuticals</h3>
-            <p class="text-sm text-slate-600 mt-1">GDP‑aligned handling for vaccines, APIs, and finished formulations.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50 tile">
-            <h3 class="font-bold">Food & Beverages</h3>
-            <p class="text-sm text-slate-600 mt-1">Dairy, meat, bakery, confectionery, and fresh produce.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50 tile">
-            <h3 class="font-bold">Healthcare</h3>
-            <p class="text-sm text-slate-600 mt-1">Hospitals, diagnostics, blood banks, and clinical trial support.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50 tile">
-            <h3 class="font-bold">Agriculture & Allied</h3>
-            <p class="text-sm text-slate-600 mt-1">Seeds, nutraceuticals, and temperature‑sensitive inputs.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technology & Compliance -->
-    <section id="technology" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Technology, Quality & Compliance</h2>
-        <div class="mt-8 grid lg:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Digital Traceability</h3>
-            <p class="mt-2 text-sm text-slate-600">Live tracking, digital proofs, audit trails, and analytics dashboards for full supply chain visibility.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Quality & Standards</h3>
-            <p class="mt-2 text-sm text-slate-600">Strict adherence to Indian regulations and alignment with international GDP/ISO best practices.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">People & Processes</h3>
-            <p class="mt-2 text-sm text-slate-600">Skilled teams, validated SOPs, and continuous training ensure consistent, customer‑centric execution.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fleet -->
-    <section id="fleet" class="py-16 lg:py-20 bg-white">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Refrigerated Fleet</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">Validated reefer vehicles across tonnages for deep‑freeze, chilled, and ambient‑controlled movements.</p>
-        <!-- CDN-sourced imagery avoids bundling large assets -->
-        <div class="mt-8 grid sm:grid-cols-2 gap-6">
-          <div class="bg-slate-50 rounded-2xl p-4 tile shadow-sm border border-slate-100">
-            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Truck" class="w-full h-64 object-contain" />
-            <div class="mt-3 text-sm text-slate-600">Small & medium reefer trucks for urban and regional distribution.</div>
-          </div>
-          <div class="bg-slate-50 rounded-2xl p-4 tile shadow-sm border border-slate-100">
-            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Truck" class="w-full h-64 object-contain" />
-            <div class="mt-3 text-sm text-slate-600">Higher‑capacity reefers for intercity lanes and long hauls.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sustainability -->
-    <section id="csr" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Sustainability & Responsibility</h2>
-        <div class="mt-6 grid lg:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Greener Operations</h3>
-            <p class="mt-2 text-sm text-slate-600">Energy‑efficient refrigeration, optimized routing, and reduced emissions initiatives to minimize environmental impact.</p>
-          </div>
-            <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Community Impact</h3>
-            <p class="mt-2 text-sm text-slate-600">Positive contributions to local communities through responsible employment and safety‑first practices.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-16 lg:py-20 bg-brand.dark text-slate-100">
-      <div class="mx-auto container-narrow px-4">
-        <div class="grid lg:grid-cols-2 gap-10">
-          <div>
-            <h2 class="text-3xl font-extrabold">Get in Touch</h2>
-            <p class="mt-2 text-slate-300">Tell us about your temperature‑controlled logistics needs. Our team will respond promptly.</p>
-            <div class="mt-6 space-y-3 text-sm">
-              <div class="flex items-start gap-3">
-                <span class="mt-1">📍</span>
-                <p>Near Commercial Check Post, Nimbekapura, Old Madras Road, Bangalore – 560049</p>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>📞</span>
-                <a href="tel:+919008922655" class="hover:underline text-white">+91 90089 22655</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>✉️</span>
-                <a href="mailto:sales@shiftcontroll.com" class="hover:underline text-white">sales@shiftcontroll.com</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>💬</span>
-                <a href="https://wa.me/919008922655" class="hover:underline text-white">WhatsApp Chat</a>
-              </div>
-            </div>
-            <div class="mt-6 flex gap-3">
-              <a href="mailto:sales@shiftcontroll.com?subject=Logistics%20Enquiry" class="px-4 py-2 rounded-xl bg-white text-brand.dark font-semibold">Email Sales</a>
-              <a href="https://wa.me/919008922655?text=Hello%20Shift%20Control%2C%20I%27d%20like%20to%20discuss%20a%20cold%20chain%20requirement." class="px-4 py-2 rounded-xl border border-slate-600 font-semibold">Start WhatsApp</a>
+      <div class="tiles" aria-hidden="false">
+        <article class="tile" role="article" tabindex="0">
+          <div class="tile-inner">
+            <div style="width:62px; height:62px; border-radius:8px; background:linear-gradient(135deg,#0c2130,#0b2a2b); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700; font-size:1.1rem;">3D</div>
+            <div class="meta">
+              <div class="label">3D Tiles</div>
+              <div class="desc">Hover to see a subtle 3D tilt and elevation effect for cards.</div>
             </div>
           </div>
+        </article>
 
-          <div class="bg-white text-slate-800 rounded-2xl p-6 shadow-lg">
-            <form name="contact-form" method="POST" action="https://formspree.io/f/mayyljzd">
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="text-sm font-medium">Full Name</label>
-                  <input type="text" name="name" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Your name" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Company</label>
-                  <input type="text" name="company" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Company name" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Work Email</label>
-                  <input type="email" name="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="name@company.com" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Phone</label>
-                  <input type="tel" name="phone" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="+91‑XXXXXXXXXX" />
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="text-sm font-medium">Service Interested In</label>
-                  <select name="service" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue">
-                    <option>Temperature‑Controlled Transportation</option>
-                    <option>Cold Storage Facilities</option>
-                    <option>Real‑Time Monitoring</option>
-                    <option>Customized Logistics</option>
-                  </select>
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="text-sm font-medium">Your Message</label>
-                  <textarea name="message" rows="4" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Tell us about your requirements…"></textarea>
-                </div>
-                <div class="sm:col-span-2 flex items-center gap-3">
-                  <input id="consent" name="consent" type="checkbox" class="rounded border-slate-300 text-brand.blue focus:ring-brand.blue" required>
-                  <label for="consent" class="text-sm text-slate-600">I agree to be contacted about my enquiry.</label>
-                </div>
-                <div class="sm:col-span-2">
-                  <button type="submit" class="w-full px-5 py-3 rounded-xl bg-brand.green hover:opacity-90 text-white font-semibold">Send Enquiry</button>
-                </div>
-              </div>
-              <p class="text-xs text-slate-500 mt-3">Prefer email? Write to <a href="mailto:sales@shiftcontroll.com" class="underline">sales@shiftcontroll.com</a></p>
-            </form>
+        <article class="tile" role="article" tabindex="0">
+          <div class="tile-inner">
+            <div style="width:62px; height:62px; border-radius:8px; background:linear-gradient(135deg,#12202b,#1a2732); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700; font-size:1.1rem;">IMG</div>
+            <div class="meta">
+              <div class="label">CDN Images</div>
+              <div class="desc">Images are loaded from Unsplash CDN to keep the repo small and fast to clone.</div>
+            </div>
           </div>
-        </div>
+        </article>
+
+        <article class="tile" role="article" tabindex="0">
+          <div class="tile-inner">
+            <div style="width:62px; height:62px; border-radius:8px; background:linear-gradient(135deg,#0d2b2b,#16393a); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700; font-size:1.1rem;">UI</div>
+            <div class="meta">
+              <div class="label">Lightweight</div>
+              <div class="desc">Replacing heavy binary assets with text/remote images keeps the bundle minimal.</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile" role="article" tabindex="0">
+          <div class="tile-inner">
+            <div style="width:62px; height:62px; border-radius:8px; background:linear-gradient(135deg,#1b2330,#0d1e2a); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:700; font-size:1.1rem;">CSS</div>
+            <div class="meta">
+              <div class="label">Animation</div>
+              <div class="desc">CSS-only floating animation and transform-based 3D interactions — no JS required.</div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 bg-white border-t border-slate-200">
-      <div class="mx-auto container-narrow px-4 grid md:grid-cols-3 gap-8">
-        <div>
-          <!-- Footer uses text branding to avoid binary assets -->
-          <div class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></div>
-          <p class="mt-2 text-sm text-slate-600">World‑class cold chain logistics for India — reliable, compliant, and technology‑driven.</p>
-        </div>
-        <div>
-          <div class="font-bold">Company</div>
-          <ul class="mt-2 space-y-1 text-sm text-slate-600">
-            <li><a href="#services" class="hover:underline">Services</a></li>
-            <li><a href="#industries" class="hover:underline">Industries</a></li>
-            <li><a href="#technology" class="hover:underline">Technology</a></li>
-            <li><a href="#fleet" class="hover:underline">Fleet</a></li>
-            <li><a href="#contact" class="hover:underline">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="font-bold">Contact</div>
-          <ul class="mt-2 space-y-1 text-sm text-slate-600">
-            <li>Near Commercial Check Post, Nimbekapura, Old Madras Road, Bangalore – 560049</li>
-            <li><a href="tel:+919008922655" class="hover:underline">+91 90089 22655</a></li>
-            <li><a href="mailto:sales@shiftcontroll.com" class="hover:underline">sales@shiftcontroll.com</a></li>
-            <li><a href="https://wa.me/919008922655" class="hover:underline">WhatsApp</a></li>
-          </ul>
-        </div>
+    <aside class="panel" aria-label="Floating truck preview">
+      <div class="floating-ship" title="Floating truck preview">
+        <!-- Unsplash CDN truck photo -->
+        <img
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80&auto=format&fit=crop&ixlib=rb-4.0.3&s=auto"
+          alt="3D floating truck preview from Unsplash"
+          loading="lazy"
+        />
       </div>
-      <div class="mt-8 text-center text-xs text-slate-500">© <span id="year"></span> Shift Control. All rights reserved.</div>
-    </footer>
+    </aside>
+  </main>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
+  <footer class="site-footer" role="contentinfo">
+    <div>© 2025 Test Website</div>
+    <div style="color:var(--muted)">Built with simplicity — no bundled SVGs</div>
+  </footer>
+</body>
 </html>
