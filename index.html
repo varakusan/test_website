@@ -71,6 +71,7 @@
     <header class="sticky top-0 z-40 bg-white/90 glass shadow-sm">
       <div class="mx-auto container-narrow px-4 py-4 flex items-center justify-between">
         <a href="#home" class="flex items-center gap-3" aria-label="Shift Control Home">
+          <!-- Text-based logo branding keeps markup lightweight -->
           <span class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></span>
         </a>
         <nav class="hidden md:flex items-center gap-6 font-medium">
@@ -223,6 +224,7 @@
       <div class="mx-auto container-narrow px-4">
         <h2 class="text-3xl font-extrabold">Refrigerated Fleet</h2>
         <p class="mt-2 text-slate-600 max-w-2xl">Validated reefer vehicles across tonnages for deep‑freeze, chilled, and ambient‑controlled movements.</p>
+        <!-- CDN-sourced imagery avoids bundling large assets -->
         <div class="mt-8 grid sm:grid-cols-2 gap-6">
           <div class="bg-slate-50 rounded-2xl p-4 tile shadow-sm border border-slate-100">
             <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Truck" class="w-full h-64 object-contain" />
@@ -335,6 +337,7 @@
     <footer class="py-10 bg-white border-t border-slate-200">
       <div class="mx-auto container-narrow px-4 grid md:grid-cols-3 gap-8">
         <div>
+          <!-- Footer uses text branding to avoid binary assets -->
           <div class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></div>
           <p class="mt-2 text-sm text-slate-600">World‑class cold chain logistics for India — reliable, compliant, and technology‑driven.</p>
         </div>
