@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#ffffff"/>
+  <!-- cargo box -->
+  <rect x="80" y="60" width="220" height="80" fill="#f8f8f8" stroke="#cccccc" stroke-width="4"/>
+  <!-- cab -->
+  <rect x="300" y="80" width="60" height="60" fill="#dddddd" stroke="#999999" stroke-width="4"/>
+  <!-- wheels -->
+  <circle cx="120" cy="150" r="20" fill="#333333"/>
+  <circle cx="260" cy="150" r="20" fill="#333333"/>
+  <circle cx="330" cy="150" r="20" fill="#333333"/>
+</svg>

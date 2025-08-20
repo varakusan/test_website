@@ -12,15 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install & build (skip when PR closed)
-        if: github.event.action != 'closed'
-        run: |
-          npm ci
-          npm run build
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./dist/
+          source-dir: ./
           preview-branch: gh-pages
           umbrella-dir: pr-preview
