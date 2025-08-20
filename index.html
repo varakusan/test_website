@@ -30,12 +30,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
       html { scroll-behavior: smooth; }
-      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; perspective: 1000px; }
       .container-narrow { max-width: 1100px; }
       .glass { backdrop-filter: blur(6px); background: rgba(255,255,255,0.6); }
+      .tile { transition: transform 0.3s ease, box-shadow 0.3s ease; transform-style: preserve-3d; }
+      .tile:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-5deg); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #555; }
+      #floating-truck { position: fixed; top: 50%; left: 50%; width: 150px; transform-style: preserve-3d; animation: truckFloat 20s linear infinite; pointer-events: none; z-index: 50; }
+      @keyframes truckFloat {
+        0% { transform: translate3d(-50vw, -50vh, 0) rotateY(0deg); }
+        25% { transform: translate3d(50vw, -60vh, 50px) rotateY(90deg); }
+        50% { transform: translate3d(50vw, 40vh, 0) rotateY(180deg); }
+        75% { transform: translate3d(-50vw, 60vh, -50px) rotateY(270deg); }
+        100% { transform: translate3d(-50vw, -50vh, 0) rotateY(360deg); }
+      }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800">
+    <img id="floating-truck" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80" alt="Floating Refrigerated Truck" />
     <!-- Top Bar -->
     <div class="w-full bg-brand.dark text-slate-100">
       <div class="mx-auto container-narrow px-4 py-2 flex flex-wrap items-center justify-between gap-3 text-sm">
@@ -55,9 +70,8 @@
     <!-- Header / Nav -->
     <header class="sticky top-0 z-40 bg-white/90 glass shadow-sm">
       <div class="mx-auto container-narrow px-4 py-4 flex items-center justify-between">
-        <!-- Replace src with your uploaded logo path, e.g. /assets/logo.svg -->
         <a href="#home" class="flex items-center gap-3" aria-label="Shift Control Home">
-          <img src="/assets/logo.svg" alt="Shift Control Logo" class="h-9 w-auto" />
+          <span class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></span>
         </a>
         <nav class="hidden md:flex items-center gap-6 font-medium">
           <a href="#home" class="hover:text-brand.dark">Home</a>
@@ -88,19 +102,19 @@
         <div class="relative">
           <div class="rounded-3xl shadow-2xl bg-white p-6 border border-slate-100">
             <div class="grid grid-cols-2 gap-6">
-              <div class="p-4 rounded-2xl bg-slate-50">
+              <div class="p-4 rounded-2xl bg-slate-50 tile">
                 <div class="text-3xl font-extrabold">-25°C</div>
                 <div class="text-sm text-slate-500">Deep‑freeze lanes</div>
               </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
+              <div class="p-4 rounded-2xl bg-slate-50 tile">
                 <div class="text-3xl font-extrabold">+2–8°C</div>
                 <div class="text-sm text-slate-500">Chilled pharma</div>
               </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
+              <div class="p-4 rounded-2xl bg-slate-50 tile">
                 <div class="text-3xl font-extrabold">+15–25°C</div>
                 <div class="text-sm text-slate-500">Ambient controlled</div>
               </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
+              <div class="p-4 rounded-2xl bg-slate-50 tile">
                 <div class="text-3xl font-extrabold text-brand.green">99.5%</div>
                 <div class="text-sm text-slate-500">OTIF performance*</div>
               </div>
@@ -117,7 +131,7 @@
         <h2 class="text-3xl font-extrabold">Services</h2>
         <p class="mt-2 text-slate-600 max-w-2xl">End‑to‑end solutions designed for integrity, speed, and compliance across your cold chain.</p>
         <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Temperature‑Controlled Transportation</h3>
             <p class="mt-2 text-sm text-slate-600">Refrigerated fleet and validated containers maintain optimal temperatures from first mile to last.</p>
             <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
@@ -126,7 +140,7 @@
               <li>OTIF and exception management</li>
             </ul>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Cold Storage Facilities</h3>
             <p class="mt-2 text-sm text-slate-600">State‑of‑the‑art warehouses with advanced cooling, racking, and safety systems.</p>
             <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
@@ -135,7 +149,7 @@
               <li>Secure, audit‑ready operations</li>
             </ul>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Real‑Time Monitoring</h3>
             <p class="mt-2 text-sm text-slate-600">IoT sensors and telemetry ensure precision, visibility, and proactive alerts in transit and storage.</p>
             <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
@@ -144,7 +158,7 @@
               <li>Digital POD & analytics</li>
             </ul>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Customized Logistics</h3>
             <p class="mt-2 text-sm text-slate-600">Tailored solutions including specialized packaging, compliance documentation, and distribution.</p>
             <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
@@ -163,19 +177,19 @@
         <h2 class="text-3xl font-extrabold">Industries We Serve</h2>
         <p class="mt-2 text-slate-600 max-w-2xl">Trusted by producers, distributors, retailers, and manufacturers across regulated and sensitive supply chains.</p>
         <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="p-6 rounded-2xl bg-slate-50">
+          <div class="p-6 rounded-2xl bg-slate-50 tile">
             <h3 class="font-bold">Pharmaceuticals</h3>
             <p class="text-sm text-slate-600 mt-1">GDP‑aligned handling for vaccines, APIs, and finished formulations.</p>
           </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
+          <div class="p-6 rounded-2xl bg-slate-50 tile">
             <h3 class="font-bold">Food & Beverages</h3>
             <p class="text-sm text-slate-600 mt-1">Dairy, meat, bakery, confectionery, and fresh produce.</p>
           </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
+          <div class="p-6 rounded-2xl bg-slate-50 tile">
             <h3 class="font-bold">Healthcare</h3>
             <p class="text-sm text-slate-600 mt-1">Hospitals, diagnostics, blood banks, and clinical trial support.</p>
           </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
+          <div class="p-6 rounded-2xl bg-slate-50 tile">
             <h3 class="font-bold">Agriculture & Allied</h3>
             <p class="text-sm text-slate-600 mt-1">Seeds, nutraceuticals, and temperature‑sensitive inputs.</p>
           </div>
@@ -188,15 +202,15 @@
       <div class="mx-auto container-narrow px-4">
         <h2 class="text-3xl font-extrabold">Technology, Quality & Compliance</h2>
         <div class="mt-8 grid lg:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Digital Traceability</h3>
             <p class="mt-2 text-sm text-slate-600">Live tracking, digital proofs, audit trails, and analytics dashboards for full supply chain visibility.</p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Quality & Standards</h3>
             <p class="mt-2 text-sm text-slate-600">Strict adherence to Indian regulations and alignment with international GDP/ISO best practices.</p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">People & Processes</h3>
             <p class="mt-2 text-sm text-slate-600">Skilled teams, validated SOPs, and continuous training ensure consistent, customer‑centric execution.</p>
           </div>
@@ -210,14 +224,12 @@
         <h2 class="text-3xl font-extrabold">Refrigerated Fleet</h2>
         <p class="mt-2 text-slate-600 max-w-2xl">Validated reefer vehicles across tonnages for deep‑freeze, chilled, and ambient‑controlled movements.</p>
         <div class="mt-8 grid sm:grid-cols-2 gap-6">
-          <!-- Replace src with /assets/truck-small.svg -->
-          <div class="bg-slate-50 rounded-2xl p-4 shadow-sm border border-slate-100">
-            <img src="/assets/truck-small.svg" alt="Reefer Truck" class="w-full h-64 object-contain" />
+          <div class="bg-slate-50 rounded-2xl p-4 tile shadow-sm border border-slate-100">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Truck" class="w-full h-64 object-contain" />
             <div class="mt-3 text-sm text-slate-600">Small & medium reefer trucks for urban and regional distribution.</div>
           </div>
-          <!-- Replace src with /assets/truck-large.svg -->
-          <div class="bg-slate-50 rounded-2xl p-4 shadow-sm border border-slate-100">
-            <img src="/assets/truck-large.svg" alt="Reefer Truck Large" class="w-full h-64 object-contain" />
+          <div class="bg-slate-50 rounded-2xl p-4 tile shadow-sm border border-slate-100">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Truck" class="w-full h-64 object-contain" />
             <div class="mt-3 text-sm text-slate-600">Higher‑capacity reefers for intercity lanes and long hauls.</div>
           </div>
         </div>
@@ -229,11 +241,11 @@
       <div class="mx-auto container-narrow px-4">
         <h2 class="text-3xl font-extrabold">Sustainability & Responsibility</h2>
         <div class="mt-6 grid lg:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Greener Operations</h3>
             <p class="mt-2 text-sm text-slate-600">Energy‑efficient refrigeration, optimized routing, and reduced emissions initiatives to minimize environmental impact.</p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+            <div class="bg-white rounded-2xl p-6 tile shadow-sm border border-slate-100">
             <h3 class="font-bold text-lg">Community Impact</h3>
             <p class="mt-2 text-sm text-slate-600">Positive contributions to local communities through responsible employment and safety‑first practices.</p>
           </div>
@@ -323,7 +335,7 @@
     <footer class="py-10 bg-white border-t border-slate-200">
       <div class="mx-auto container-narrow px-4 grid md:grid-cols-3 gap-8">
         <div>
-          <img src="/assets/logo.svg" alt="Shift Control Logo footer" class="h-7 w-auto" />
+          <div class="text-2xl font-extrabold text-brand.cyan">Shift <span class="text-brand.blue">Control</span></div>
           <p class="mt-2 text-sm text-slate-600">World‑class cold chain logistics for India — reliable, compliant, and technology‑driven.</p>
         </div>
         <div>
