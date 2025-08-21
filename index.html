@@ -1,353 +1,267 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Shift Control | Cold Chain Transportation & Storage Across India</title>
-    <meta name="description" content="Shift Control delivers temperature‑controlled transportation, cold storage, and real‑time monitoring for pharmaceuticals, food & beverages, and healthcare across India." />
-
-    <!-- Brand palette (from logo): cyan/blue + green accent -->
-    <!-- TailwindCSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                cyan: '#13b1ec', // logo cyan
-                blue: '#3d5afe', // logo blue
-                green: '#12b24a', // logo checkmark green
-                dark: '#0b1b2b'
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
-      .container-narrow { max-width: 1100px; }
-      .glass { backdrop-filter: blur(6px); background: rgba(255,255,255,0.6); }
-    </style>
-  </head>
-  <body class="bg-slate-50 text-slate-800">
-    <!-- Top Bar -->
-    <div class="w-full bg-brand.dark text-slate-100">
-      <div class="mx-auto container-narrow px-4 py-2 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <div class="flex items-center gap-4">
-          <a href="tel:+919008922655" class="hover:underline">Call: +91 90089 22655</a>
-          <a href="mailto:sales@shiftcontroll.com" class="hover:underline">sales@shiftcontroll.com</a>
-        </div>
-        <div class="flex items-center gap-3">
-          <a href="https://wa.me/919008922655" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand.green hover:opacity-90 transition text-white" aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2a10 10 0 0 0-8.66 15.01L2 22l5.12-1.31A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.08-1.11l-.29-.17-3.03.78.81-2.95-.18-.3A8 8 0 1 1 20 12a8 8 0 0 1-8 8Zm4.61-5.7c-.25-.13-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.96-.15.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.25-.74-.66-1.25-1.47-1.4-1.72-.15-.26-.02-.4.11-.53.12-.12.25-.29.38-.44.13-.15.17-.25.25-.42.08-.16.05-.31-.03-.44-.08-.13-.56-1.34-.77-1.85-.2-.5-.41-.43-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02s.87 2.34 1 2.5c.12.16 1.71 2.6 4.15 3.65.58.25 1.03.4 1.38.52.58.18 1.1.15 1.52.09.46-.07 1.46-.6 1.67-1.17.21-.57.21-1.06.15-1.16-.06-.11-.23-.17-.48-.3Z"/></svg>
-            WhatsApp
-          </a>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Shift Controll – Futuristic Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {theme:{extend:{colors:{brand:{cyan:'#13b1ec',blue:'#3d5afe',green:'#12b24a',dark:'#0b1b2b'}}}}}
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"/>
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0d0f14;color:#e6e9ef;}
+    .glass{backdrop-filter:blur(8px);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);}
+    :root{--bg:#0d0f14;--panel:#121522;--accent:#34d399;--lane:#9aa3b2;}
+    .preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--bg);}
+    .card{width:min(880px,92vw);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 28px 36px;color:#e6e9ef;box-shadow:0 10px 40px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.05);backdrop-filter:blur(8px);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+    .top-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.4px;}
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--accent);box-shadow:0 0 12px var(--accent);}
+    .progress-text{font-variant-numeric:tabular-nums;opacity:.9;}
+    .scene{position:relative;height:180px;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#0f1320 0%,#0b0e17 100%);border:1px solid rgba(255,255,255,.06);}
+    .mounts{position:absolute;inset:0;background:radial-gradient(900px 260px at 20% 110%,#1b2133cc,transparent 70%),radial-gradient(900px 260px at 80% 110%,#1b2133cc,transparent 70%);opacity:.5;pointer-events:none;}
+    .cloud{position:absolute;top:18px;width:120px;height:38px;background:rgba(255,255,255,.08);border-radius:999px;filter:blur(1px);animation:cloud 16s linear infinite;}
+    .cloud::after{content:"";position:absolute;left:16px;top:-10px;width:70px;height:28px;background:rgba(255,255,255,.08);border-radius:999px;}
+    .cloud.c2{top:44px;width:160px;animation-duration:22s;opacity:.7}
+    @keyframes cloud{from{transform:translateX(-20vw)}to{transform:translateX(120vw)}}
+    .road{position:absolute;left:4%;right:4%;bottom:28px;height:18px;background:linear-gradient(#262b39,#1d2230);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 6px 18px rgba(0,0,0,.4);overflow:visible;}
+    .road::before{content:"";position:absolute;inset:0;top:50%;height:2px;transform:translateY(-50%);background:repeating-linear-gradient(to right,var(--lane) 0 28px,transparent 28px 48px);opacity:.9;animation:lane 300ms linear infinite;}
+    @keyframes lane{to{background-position-x:-48px;}}
+    .truck{position:absolute;bottom:calc(28px + 14px);left:4%;width:160px;max-width:26vw;transform-origin:50% 100%;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45));will-change:transform,filter;}
+    .truck svg{display:block;width:100%;height:auto;}
+    @media (prefers-reduced-motion: reduce){.cloud,.road::before{animation:none}}
+  </style>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.80/build/spline-viewer.js"></script>
+</head>
+<body>
+  <div class="preloader" role="status" aria-live="polite">
+    <div class="card">
+      <div class="top-row">
+        <div class="brand"><span class="dot"></span><span>Preparing…</span></div>
+        <div class="progress-text" aria-label="Loading percent">0%</div>
+      </div>
+      <div class="scene">
+        <div class="mounts"></div>
+        <div class="cloud c1" style="left:-15vw"></div>
+        <div class="cloud c2" style="left:-35vw"></div>
+        <div class="road" id="road"></div>
+        <div class="truck" id="truck" aria-hidden="true">
+          <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+            <g id="trailer">
+              <rect x="70" y="60" rx="14" ry="14" width="240" height="90" fill="#1f2635" />
+              <rect x="70" y="60" rx="14" ry="14" width="240" height="90" fill="url(#grad1)" opacity=".35"/>
+              <rect x="70" y="60" width="240" height="18" fill="#2b3246" opacity=".9"/>
+              <rect x="86" y="86" width="48" height="40" fill="#0f1422" opacity=".7"/>
+              <rect x="144" y="86" width="48" height="40" fill="#0f1422" opacity=".6"/>
+              <rect x="202" y="86" width="48" height="40" fill="#0f1422" opacity=".5"/>
+            </g>
+            <g id="cabin" transform="translate(260,48)">
+              <rect x="0" y="40" width="120" height="70" rx="12" fill="#24304a"/>
+              <rect x="0" y="40" width="120" height="70" rx="12" fill="url(#grad1)" opacity=".4"/>
+              <rect x="10" y="0" width="80" height="58" rx="10" fill="#2a3b66"/>
+              <rect x="16" y="6" width="68" height="38" rx="8" fill="#7fb6ff" opacity=".9"/>
+              <rect x="92" y="12" width="18" height="46" rx="4" fill="#2a3b66"/>
+              <rect x="102" y="62" width="8" height="16" rx="2" fill="#7c8699" opacity=".8"/>
+              <rect x="92" y="62" width="8" height="16" rx="2" fill="#7c8699" opacity=".6"/>
+              <rect x="82" y="62" width="8" height="16" rx="2" fill="#7c8699" opacity=".5"/>
+              <circle cx="120" cy="78" r="8" fill="#ffd991"/>
+              <circle cx="120" cy="78" r="14" fill="#ffd991" opacity=".2"/>
+            </g>
+            <rect x="248" y="128" width="18" height="8" rx="3" fill="#444d60"/>
+            <g class="wheel" transform="translate(130,160)">
+              <circle r="28" fill="#0b0f17"/>
+              <circle r="22" fill="#1b2231"/>
+              <circle r="6" fill="#7c8699"/>
+              <rect x="-2" y="-28" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-2" y="16" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-28" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+              <rect x="16" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+            </g>
+            <g class="wheel" transform="translate(220,160)">
+              <circle r="28" fill="#0b0f17"/>
+              <circle r="22" fill="#1b2231"/>
+              <circle r="6" fill="#7c8699"/>
+              <rect x="-2" y="-28" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-2" y="16" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-28" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+              <rect x="16" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+            </g>
+            <g class="wheel" transform="translate(340,160)">
+              <circle r="28" fill="#0b0f17"/>
+              <circle r="22" fill="#1b2231"/>
+              <circle r="6" fill="#7c8699"/>
+              <rect x="-2" y="-28" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-2" y="16" width="4" height="12" rx="1" fill="#7c8699"/>
+              <rect x="-28" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+              <rect x="16" y="-2" width="12" height="4" rx="1" fill="#7c8699"/>
+            </g>
+            <rect x="70" y="112" width="310" height="6" rx="3" fill="#34d399"/>
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".8"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
       </div>
     </div>
-
-    <!-- Header / Nav -->
-    <header class="sticky top-0 z-40 bg-white/90 glass shadow-sm">
-      <div class="mx-auto container-narrow px-4 py-4 flex items-center justify-between">
-        <a href="#home" class="flex items-center gap-3" aria-label="Shift Control Home">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMjAwIDEyMCI+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IndoaXRlIi8+CiAgPHRleHQgeD0iMCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxM2IxZWMiPlNISUZUPC90ZXh0PgogIDx0ZXh0IHg9IjAiIHk9Ijk1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjM2Q1YWZlIj5DT05UUk9MPC90ZXh0PgogIDx0ZXh0IHg9IjE3NSIgeT0iOTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxMmIyNGEiPuKclDwvdGV4dD4KPC9zdmc+Cg==" alt="Shift Control Logo" class="h-9 w-auto" />
-        </a>
-        <nav class="hidden md:flex items-center gap-6 font-medium">
-          <a href="#home" class="hover:text-brand.dark">Home</a>
-          <a href="#services" class="hover:text-brand.dark">Services</a>
-          <a href="#industries" class="hover:text-brand.dark">Industries</a>
-          <a href="#technology" class="hover:text-brand.dark">Technology</a>
-          <a href="#fleet" class="hover:text-brand.dark">Fleet</a>
-          <a href="#contact" class="px-4 py-2 rounded-xl bg-brand.blue text-white hover:opacity-90">Contact</a>
-        </nav>
+  </div>
+  <div class="page opacity-0" data-scroll-container>
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+      <div class="absolute inset-0">
+        <spline-viewer src="https://prod.spline.design/placeholder/scene.splinecode"></spline-viewer>
       </div>
-    </header>
-
-    <!-- Hero -->
-    <section id="home" class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-brand.cyan via-brand.blue/20 to-white"></div>
-      <div class="relative mx-auto container-narrow px-4 py-20 lg:py-28 grid lg:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 class="text-4xl lg:text-5xl font-extrabold leading-tight">
-            Redefining <span class="text-brand.cyan">Cold Chain Logistics</span> Across India
-          </h1>
-          <p class="mt-5 text-lg text-slate-700 max-w-xl">Founded in 2022 and headquartered in Bangalore, Shift Control delivers world‑class, temperature‑controlled transportation, secure cold storage, and real‑time visibility for pharmaceuticals, food & beverages, healthcare, agriculture, and more.</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#contact" class="px-5 py-3 rounded-xl bg-brand.blue text-white font-semibold hover:opacity-90">Talk to Sales</a>
-            <a href="#services" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-slate-400 font-semibold">Explore Services</a>
-          </div>
-          <div class="mt-6 text-sm text-slate-600">24×7 Operations • GDP/ISO‑aligned Practices • End‑to‑End Traceability</div>
-        </div>
-        <div class="relative">
-          <div class="rounded-3xl shadow-2xl bg-white p-6 border border-slate-100">
-            <div class="grid grid-cols-2 gap-6">
-              <div class="p-4 rounded-2xl bg-slate-50">
-                <div class="text-3xl font-extrabold">-25°C</div>
-                <div class="text-sm text-slate-500">Deep‑freeze lanes</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
-                <div class="text-3xl font-extrabold">+2–8°C</div>
-                <div class="text-sm text-slate-500">Chilled pharma</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
-                <div class="text-3xl font-extrabold">+15–25°C</div>
-                <div class="text-sm text-slate-500">Ambient controlled</div>
-              </div>
-              <div class="p-4 rounded-2xl bg-slate-50">
-                <div class="text-3xl font-extrabold text-brand.green">99.5%</div>
-                <div class="text-sm text-slate-500">OTIF performance*</div>
-              </div>
-            </div>
-            <p class="mt-3 text-xs text-slate-400">*Illustrative KPI placeholder. Replace with your live metric.</p>
-          </div>
+      <div class="relative z-10 max-w-3xl px-4">
+        <h1 id="hero-headline" class="text-4xl md:text-6xl font-extrabold mb-6">Hi, Welcome to Shift Controll – your one stop to cold chain logistics</h1>
+        <a id="hero-cta" href="#contact" class="inline-block px-8 py-3 rounded-xl bg-brand.blue text-white font-semibold shadow-lg hover:scale-105 transition-transform">Contact Us</a>
+      </div>
+      <div class="glow-orb w-72 h-72 bg-brand.cyan/20 rounded-full blur-3xl absolute top-20 left-10"></div>
+      <div class="glow-orb w-72 h-72 bg-brand.blue/20 rounded-full blur-3xl absolute bottom-20 right-10"></div>
+    </section>
+    <section id="about" class="py-24 px-6 md:px-0 max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div class="flex justify-center">
+        <img src="https://via.placeholder.com/300" alt="Profile" class="w-48 h-48 rounded-full border-4 border-brand.cyan shadow-xl hover:rotate-3 hover:-translate-y-1 transition-transform duration-300"/>
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4">About Us</h2>
+        <p class="text-slate-300 mb-6">Shift Controll blends cutting‑edge technology with deep logistics expertise to deliver premium cold chain solutions across India.</p>
+        <div class="grid grid-cols-5 gap-4 text-center text-brand.cyan">
+          <i class="ph-light ph-html5 text-4xl"></i>
+          <i class="ph-light ph-css3 text-4xl"></i>
+          <i class="ph-light ph-javascript-logo text-4xl"></i>
+          <i class="ph-light ph-react-logo text-4xl"></i>
+          <i class="ph-light ph-lightning text-4xl"></i>
         </div>
       </div>
     </section>
-
-    <!-- Services -->
-    <section id="services" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Services</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">End‑to‑end solutions designed for integrity, speed, and compliance across your cold chain.</p>
-        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Temperature‑Controlled Transportation</h3>
-            <p class="mt-2 text-sm text-slate-600">Refrigerated fleet and validated containers maintain optimal temperatures from first mile to last.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Deep‑freeze, chilled, and ambient‑controlled</li>
-              <li>Route optimization & live GPS</li>
-              <li>OTIF and exception management</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Cold Storage Facilities</h3>
-            <p class="mt-2 text-sm text-slate-600">State‑of‑the‑art warehouses with advanced cooling, racking, and safety systems.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Multi‑temperature zones</li>
-              <li>Inventory & batch/lot tracking</li>
-              <li>Secure, audit‑ready operations</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Real‑Time Monitoring</h3>
-            <p class="mt-2 text-sm text-slate-600">IoT sensors and telemetry ensure precision, visibility, and proactive alerts in transit and storage.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Continuous temperature logging</li>
-              <li>Geo‑fencing & ETA updates</li>
-              <li>Digital POD & analytics</li>
-            </ul>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Customized Logistics</h3>
-            <p class="mt-2 text-sm text-slate-600">Tailored solutions including specialized packaging, compliance documentation, and distribution.</p>
-            <ul class="mt-3 space-y-1 text-sm text-slate-600 list-disc list-inside">
-              <li>Last‑mile & reverse logistics</li>
-              <li>Value‑added services (VAS)</li>
-              <li>SLA‑aligned playbooks</li>
-            </ul>
-          </div>
+    <section id="projects" class="py-24">
+      <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
+      <div class="flex gap-8 overflow-x-auto px-6 pb-4">
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 1" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 1</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
+        </div>
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 2" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 2</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
+        </div>
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 3" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 3</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
+        </div>
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 4" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 4</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
+        </div>
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 5" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 5</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
+        </div>
+        <div class="flex-shrink-0 w-72 glass rounded-2xl p-4 hover:scale-105 transition-transform">
+          <img src="https://via.placeholder.com/300x200" alt="Project 6" class="rounded-xl mb-4"/>
+          <h3 class="font-semibold">Project 6</h3>
+          <p class="text-sm text-slate-300 mb-2">Description goes here.</p>
+          <a href="#" class="text-brand.green hover:underline">View</a>
         </div>
       </div>
     </section>
-
-    <!-- Industries -->
-    <section id="industries" class="py-16 lg:py-20 bg-white">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Industries We Serve</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">Trusted by producers, distributors, retailers, and manufacturers across regulated and sensitive supply chains.</p>
-        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="p-6 rounded-2xl bg-slate-50">
-            <h3 class="font-bold">Pharmaceuticals</h3>
-            <p class="text-sm text-slate-600 mt-1">GDP‑aligned handling for vaccines, APIs, and finished formulations.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
-            <h3 class="font-bold">Food & Beverages</h3>
-            <p class="text-sm text-slate-600 mt-1">Dairy, meat, bakery, confectionery, and fresh produce.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
-            <h3 class="font-bold">Healthcare</h3>
-            <p class="text-sm text-slate-600 mt-1">Hospitals, diagnostics, blood banks, and clinical trial support.</p>
-          </div>
-          <div class="p-6 rounded-2xl bg-slate-50">
-            <h3 class="font-bold">Agriculture & Allied</h3>
-            <p class="text-sm text-slate-600 mt-1">Seeds, nutraceuticals, and temperature‑sensitive inputs.</p>
-          </div>
-        </div>
-      </div>
+    <section id="contact" class="py-24 px-6 md:px-0 max-w-xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">Contact</h2>
+      <form class="glass rounded-2xl p-8 space-y-4">
+        <input type="text" placeholder="Name" class="w-full p-3 rounded-xl bg-transparent border border-slate-600 focus:border-brand.cyan"/>
+        <input type="email" placeholder="Email" class="w-full p-3 rounded-xl bg-transparent border border-slate-600 focus:border-brand.cyan"/>
+        <textarea placeholder="Message" class="w-full p-3 rounded-xl bg-transparent border border-slate-600 focus:border-brand.cyan" rows="4"></textarea>
+        <button id="submit-btn" type="submit" class="w-full px-6 py-3 rounded-xl bg-brand.green text-slate-900 font-semibold hover:scale-105 transition-transform">Send</button>
+      </form>
     </section>
-
-    <!-- Technology & Compliance -->
-    <section id="technology" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Technology, Quality & Compliance</h2>
-        <div class="mt-8 grid lg:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Digital Traceability</h3>
-            <p class="mt-2 text-sm text-slate-600">Live tracking, digital proofs, audit trails, and analytics dashboards for full supply chain visibility.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Quality & Standards</h3>
-            <p class="mt-2 text-sm text-slate-600">Strict adherence to Indian regulations and alignment with international GDP/ISO best practices.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">People & Processes</h3>
-            <p class="mt-2 text-sm text-slate-600">Skilled teams, validated SOPs, and continuous training ensure consistent, customer‑centric execution.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fleet -->
-    <section id="fleet" class="py-16 lg:py-20 bg-white">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Refrigerated Fleet</h2>
-        <p class="mt-2 text-slate-600 max-w-2xl">Validated reefer vehicles across tonnages for deep‑freeze, chilled, and ambient‑controlled movements.</p>
-        <div class="mt-8 grid sm:grid-cols-2 gap-6">
-          <div class="bg-slate-50 rounded-2xl p-4 shadow-sm border border-slate-100">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+CiAgPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmZmZmZmYiLz4KICA8IS0tIGNhcmdvIGJveCAtLT4KICA8cmVjdCB4PSI4MCIgeT0iNjAiIHdpZHRoPSIyMjAiIGhlaWdodD0iODAiIGZpbGw9IiNmOGY4ZjgiIHN0cm9rZT0iI2NjY2NjYyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CiAgPCEtLSBjYWIgLS0+CiAgPHJlY3QgeD0iMzAwIiB5PSI4MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjZGRkZGRkIiBzdHJva2U9IiM5OTk5OTkiIHN0cm9rZS13aWR0aD0iNCIvPgogIDwhLS0gd2hlZWxzIC0tPgogIDxjaXJjbGUgY3g9IjEyMCIgY3k9IjE1MCIgcj0iMjAiIGZpbGw9IiMzMzMzMzMiLz4KICA8Y2lyY2xlIGN4PSIyNjAiIGN5PSIxNTAiIHI9IjIwIiBmaWxsPSIjMzMzMzMzIi8+CiAgPGNpcmNsZSBjeD0iMzMwIiBjeT0iMTUwIiByPSIyMCIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" alt="Reefer Truck" class="w-full h-64 object-contain" />
-            <div class="mt-3 text-sm text-slate-600">Small & medium reefer trucks for urban and regional distribution.</div>
-          </div>
-          <div class="bg-slate-50 rounded-2xl p-4 shadow-sm border border-slate-100">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+CiAgPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmZmZmZmYiLz4KICA8IS0tIGNhcmdvIGJveCAtLT4KICA8cmVjdCB4PSI2MCIgeT0iNTAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZmY0NDQ0IiBzdHJva2U9IiNjYzAwMDAiIHN0cm9rZS13aWR0aD0iNCIvPgogIDwhLS0gY2FiIC0tPgogIDxyZWN0IHg9IjMwMCIgeT0iODAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCIgZmlsbD0iI2RkZGRkZCIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjQiLz4KICA8IS0tIHdoZWVscyAtLT4KICA8Y2lyY2xlIGN4PSIxMjAiIGN5PSIxNjAiIHI9IjIyIiBmaWxsPSIjMzMzMzMzIi8+CiAgPGNpcmNsZSBjeD0iMjQwIiBjeT0iMTYwIiByPSIyMiIgZmlsbD0iIzMzMzMzMyIvPgogIDxjaXJjbGUgY3g9IjMzMCIgY3k9IjE2MCIgcj0iMjIiIGZpbGw9IiMzMzMzMzMiLz4KPC9zdmc+Cg==" alt="Reefer Truck Large" class="w-full h-64 object-contain" />
-            <div class="mt-3 text-sm text-slate-600">Higher‑capacity reefers for intercity lanes and long hauls.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sustainability -->
-    <section id="csr" class="py-16 lg:py-20">
-      <div class="mx-auto container-narrow px-4">
-        <h2 class="text-3xl font-extrabold">Sustainability & Responsibility</h2>
-        <div class="mt-6 grid lg:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Greener Operations</h3>
-            <p class="mt-2 text-sm text-slate-600">Energy‑efficient refrigeration, optimized routing, and reduced emissions initiatives to minimize environmental impact.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-            <h3 class="font-bold text-lg">Community Impact</h3>
-            <p class="mt-2 text-sm text-slate-600">Positive contributions to local communities through responsible employment and safety‑first practices.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-16 lg:py-20 bg-brand.dark text-slate-100">
-      <div class="mx-auto container-narrow px-4">
-        <div class="grid lg:grid-cols-2 gap-10">
-          <div>
-            <h2 class="text-3xl font-extrabold">Get in Touch</h2>
-            <p class="mt-2 text-slate-300">Tell us about your temperature‑controlled logistics needs. Our team will respond promptly.</p>
-            <div class="mt-6 space-y-3 text-sm">
-              <div class="flex items-start gap-3">
-                <span class="mt-1">📍</span>
-                <p>Near Commercial Check Post, Nimbekapura, Old Madras Road, Bangalore – 560049</p>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>📞</span>
-                <a href="tel:+919008922655" class="hover:underline text-white">+91 90089 22655</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>✉️</span>
-                <a href="mailto:sales@shiftcontroll.com" class="hover:underline text-white">sales@shiftcontroll.com</a>
-              </div>
-              <div class="flex items-center gap-3">
-                <span>💬</span>
-                <a href="https://wa.me/919008922655" class="hover:underline text-white">WhatsApp Chat</a>
-              </div>
-            </div>
-            <div class="mt-6 flex gap-3">
-              <a href="mailto:sales@shiftcontroll.com?subject=Logistics%20Enquiry" class="px-4 py-2 rounded-xl bg-white text-brand.dark font-semibold">Email Sales</a>
-              <a href="https://wa.me/919008922655?text=Hello%20Shift%20Control%2C%20I%27d%20like%20to%20discuss%20a%20cold%20chain%20requirement." class="px-4 py-2 rounded-xl border border-slate-600 font-semibold">Start WhatsApp</a>
-            </div>
-          </div>
-
-          <div class="bg-white text-slate-800 rounded-2xl p-6 shadow-lg">
-            <form name="contact-form" method="POST" action="https://formspree.io/f/mayyljzd">
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="text-sm font-medium">Full Name</label>
-                  <input type="text" name="name" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Your name" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Company</label>
-                  <input type="text" name="company" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Company name" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Work Email</label>
-                  <input type="email" name="email" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="name@company.com" />
-                </div>
-                <div>
-                  <label class="text-sm font-medium">Phone</label>
-                  <input type="tel" name="phone" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="+91‑XXXXXXXXXX" />
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="text-sm font-medium">Service Interested In</label>
-                  <select name="service" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue">
-                    <option>Temperature‑Controlled Transportation</option>
-                    <option>Cold Storage Facilities</option>
-                    <option>Real‑Time Monitoring</option>
-                    <option>Customized Logistics</option>
-                  </select>
-                </div>
-                <div class="sm:col-span-2">
-                  <label class="text-sm font-medium">Your Message</label>
-                  <textarea name="message" rows="4" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand.blue focus:ring-brand.blue" placeholder="Tell us about your requirements…"></textarea>
-                </div>
-                <div class="sm:col-span-2 flex items-center gap-3">
-                  <input id="consent" name="consent" type="checkbox" class="rounded border-slate-300 text-brand.blue focus:ring-brand.blue" required>
-                  <label for="consent" class="text-sm text-slate-600">I agree to be contacted about my enquiry.</label>
-                </div>
-                <div class="sm:col-span-2">
-                  <button type="submit" class="w-full px-5 py-3 rounded-xl bg-brand.green hover:opacity-90 text-white font-semibold">Send Enquiry</button>
-                </div>
-              </div>
-              <p class="text-xs text-slate-500 mt-3">Prefer email? Write to <a href="mailto:sales@shiftcontroll.com" class="underline">sales@shiftcontroll.com</a></p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-10 bg-white border-t border-slate-200">
-      <div class="mx-auto container-narrow px-4 grid md:grid-cols-3 gap-8">
-        <div>
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMjAwIDEyMCI+CiAgPHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IndoaXRlIi8+CiAgPHRleHQgeD0iMCIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxM2IxZWMiPlNISUZUPC90ZXh0PgogIDx0ZXh0IHg9IjAiIHk9Ijk1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjM2Q1YWZlIj5DT05UUk9MPC90ZXh0PgogIDx0ZXh0IHg9IjE3NSIgeT0iOTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMxMmIyNGEiPuKclDwvdGV4dD4KPC9zdmc+Cg==" alt="Shift Control Logo footer" class="h-7 w-auto" />
-          <p class="mt-2 text-sm text-slate-600">World‑class cold chain logistics for India — reliable, compliant, and technology‑driven.</p>
-        </div>
-        <div>
-          <div class="font-bold">Company</div>
-          <ul class="mt-2 space-y-1 text-sm text-slate-600">
-            <li><a href="#services" class="hover:underline">Services</a></li>
-            <li><a href="#industries" class="hover:underline">Industries</a></li>
-            <li><a href="#technology" class="hover:underline">Technology</a></li>
-            <li><a href="#fleet" class="hover:underline">Fleet</a></li>
-            <li><a href="#contact" class="hover:underline">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="font-bold">Contact</div>
-          <ul class="mt-2 space-y-1 text-sm text-slate-600">
-            <li>Near Commercial Check Post, Nimbekapura, Old Madras Road, Bangalore – 560049</li>
-            <li><a href="tel:+919008922655" class="hover:underline">+91 90089 22655</a></li>
-            <li><a href="mailto:sales@shiftcontroll.com" class="hover:underline">sales@shiftcontroll.com</a></li>
-            <li><a href="https://wa.me/919008922655" class="hover:underline">WhatsApp</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mt-8 text-center text-xs text-slate-500">© <span id="year"></span> Shift Control. All rights reserved.</div>
+    <footer class="py-10 text-center text-sm text-slate-400">
+      © <span id="year"></span> Shift Controll. All rights reserved.
     </footer>
-
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://unpkg.com/phosphor-icons"></script>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded',()=>{
+      gsap.registerPlugin(ScrollTrigger);
+      const tl=gsap.timeline();
+      tl.fromTo('#hero-headline',{opacity:0,y:50,filter:'blur(10px)'},{opacity:1,y:0,filter:'blur(0)',duration:1});
+      tl.fromTo('#hero-cta',{opacity:0,y:20},{opacity:1,y:0,duration:0.6},'<0.3');
+      gsap.to('.glow-orb',{y:-20,duration:3,repeat:-1,yoyo:true,ease:'power1.inOut'});
+      new LocomotiveScroll({el:document.querySelector('[data-scroll-container]'),smooth:true});
+      gsap.from('#about',{opacity:0,filter:'blur(10px)',scrollTrigger:{trigger:'#about',start:'top 80%'}});
+      gsap.from('#about img',{x:-60,opacity:0,scrollTrigger:{trigger:'#about',start:'top 80%'}});
+      gsap.from('#about .grid i',{opacity:0,y:30,stagger:0.1,scrollTrigger:{trigger:'#about',start:'top 80%'}});
+      gsap.from('#projects .glass',{opacity:0,y:60,stagger:0.2,scrollTrigger:{trigger:'#projects',start:'top 80%'}});
+      gsap.from('#contact form input, #contact form textarea',{opacity:0,x:-40,stagger:0.1,scrollTrigger:{trigger:'#contact',start:'top 80%'}});
+      gsap.from('#submit-btn',{scale:0.9,opacity:0,scrollTrigger:{trigger:'#contact',start:'top 80%'}});
+    });
+  </script>
+  <script>
+    (function(){
+      const pre=document.querySelector('.preloader');
+      const truck=document.getElementById('truck');
+      const road=document.getElementById('road');
+      const pct=document.querySelector('.progress-text');
+      const page=document.querySelector('.page');
+      const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!pre||!truck||!road)return;
+      if(reduce){
+        pct.textContent='100%';
+        pre.style.opacity=0;pre.style.pointerEvents='none';
+        page.style.opacity=1;
+        setTimeout(()=>pre.style.display='none',150);
+        return;
+      }
+      gsap.set(truck,{x:0,rotate:0});
+      gsap.to('#truck .wheel',{rotation:360,transformOrigin:'50% 50%',repeat:-1,ease:'none',duration:0.6});
+      gsap.to(truck,{y:-3,rotate:0.6,yoyo:true,repeat:-1,ease:'sine.inOut',duration:0.6});
+      function puff(){
+        const el=document.createElement('div');
+        const scene=pre.querySelector('.scene');
+        el.style.cssText='position:absolute;width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.14);pointer-events:none;filter:blur(0.5px);';
+        el.style.left=(truck.offsetLeft+10)+'px';
+        el.style.bottom='120px';
+        scene.appendChild(el);
+        gsap.fromTo(el,{opacity:.8,x:-6,y:0,scale:.6},{opacity:0,x:-40,y:-18,scale:1.6,duration:.9,ease:'power1.out',onComplete:()=>el.remove()});
+      }
+      const puffTimer=setInterval(puff,220);
+      const dist=()=>Math.max(0,road.getBoundingClientRect().width-truck.getBoundingClientRect().width);
+      let maxX=dist();
+      const duration=2.2;
+      gsap.to({}, {duration,onUpdate(){pct.textContent=Math.round(this.progress()*100)+'%';}});
+      gsap.to(truck,{
+        x:maxX,
+        duration,
+        ease:'power2.out',
+        onComplete(){
+          clearInterval(puffTimer);
+          gsap.to(pre,{opacity:0,scale:0.98,duration:.8,ease:'power1.out',onComplete:()=>{pre.style.display='none';gsap.to(page,{opacity:1,duration:0.8});}});
+        }
+      });
+      window.addEventListener('resize',()=>{
+        const old=maxX;maxX=dist();
+        const progress=old?(gsap.getProperty(truck,'x')/old):0;
+        gsap.set(truck,{x:maxX*progress});
+      });
+    })();
+  </script>
+</body>
 </html>
